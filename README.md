@@ -113,3 +113,19 @@ BEGIN
 END;
 
 SELECT dbo.F1(N'iPhone 15', 2010)
+
+
+
+
+--a) Tạo người dùng User1 có thông tin đăng nhập:
+--Login = ‘User1’; Password = “USER1”
+--b) Tạo vai trò người dùng (Role) như sau: DataEntry
+--c) Gán User1 vào vai trò DataEntry
+--Cho vai trò DataEntry các quyền SELECT, INSERT, và UPDATE trên quan hệ
+
+create login User2 with password = 'USER2';
+create user User2 for login User2;
+create role DateEntry;
+alter role DateEntry add member User2;
+
+grant select, insert, update on SCHEMA::dbo TO DateEntry;
